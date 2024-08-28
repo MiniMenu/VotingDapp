@@ -1,0 +1,31 @@
+
+ 
+  
+  button {
+    background-color: #007bff; /* Blue color for the button */
+    color: white; /* White text color */
+    padding: 12px 24px; /* Padding for a larger clickable area */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 18px; /* Larger font size for visibility */
+    font-weight: bold; /* Bold text for emphasis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  }
+  
+  button:hover {
+    background-color: #0069d9; /* Slightly darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+  }
+  
+  button:active {
+    background-color: #0056b3; /* Even darker blue on click */
+    transform: scale(1); /* Return to original size on click */
+  }
+
+  .child_div{
+        position: absolute;
+        left: 170%;
+  }
+  

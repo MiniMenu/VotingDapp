@@ -1,0 +1,230 @@
+
+
+nav {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 20px;
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ff0;
+}
+
+.emerBtn {
+  background-color: #ff4c4c; /* Bright red color for emergency */
+  color: white; /* White text color */
+  padding: 12px 20px; /* Padding for a larger clickable area */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 18px; /* Larger font size for visibility */
+  font-weight: bold; /* Bold text for emphasis */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.emerBtn:hover {
+  background-color: #e04343; /* Slightly darker red on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.emerBtn:active {
+  background-color: #d03c3c; /* Even darker red on click */
+  transform: scale(1); /* Return to original size on click */
+}
+
+.announceBtn {
+  background-color: #28a745; /* Green color for success/announcement */
+  color: white; /* White text color */
+  padding: 12px 20px; /* Padding for a larger clickable area */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 18px; /* Larger font size for visibility */
+  font-weight: bold; /* Bold text for emphasis */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.announceBtn:hover {
+  background-color: #218838; /* Slightly darker green on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.announceBtn:active {
+  background-color: #1e7e34; /* Even darker green on click */
+  transform: scale(1); /* Return to original size on click */
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #555;
+  color: white;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+input[type="file"] {
+  margin-top: 15px;
+  display: block;
+  color: white;
+}
+
+input[type="file"]::file-selector-button {
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #45a049;
+}
+.container {
+  font-family: arial;
+  font-size: 24px;
+  margin: 25px;
+  width: 350px;
+  height: 200px;
+  outline: dashed 1px black;
+  /* Setup */
+  position: relative;
+}
+
+.child {
+  width: 150%;
+  height: 50%;
+
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  margin: -200px 0 0 -25px; /* Apply negative top and left margins to truly center the element */
+}
+
+/* Container for candidates */
+.list-container {
+  padding: 20px;
+
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding-top: 5%;
+}
+
+/* Style for each candidate list */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  background-color: #444;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.list li {
+  padding: 10px;
+  color: white;
+  border-bottom: 1px solid #555;
+}
+
+.list li:last-child {
+  border-bottom: none;
+}
+
+.list img {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Adjust image for better visual appearance */
+.list img {
+  border: 2px solid #fff; /* Optional: white border around image */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .list {
+    margin: 0;
+  }
+
+  .list li {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .list img {
+    width: 100%;
+    height: auto;
+  }
+}
