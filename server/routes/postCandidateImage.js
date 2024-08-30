@@ -10,12 +10,13 @@ router.post(
     try {
       const { accountAddress } = req;
       const imageName = req.file.filename;
-      const savedcandidate = await CandidateModel.create({
+      await CandidateModel.create({
         accountAddress,
         imageName,
       });
-      res.status(201).json(savedcandidate);
+      res.status(201).json({ message: "Image Upload Sucessfull!" });
     } catch (error) {
+      res.status(500).json({ message: "Image Upload Unsucessfull!" });
       console.error(error);
     }
   }

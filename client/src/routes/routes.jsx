@@ -6,6 +6,8 @@ import VoterDisplay from '../pages/Voter/VoterDisplay'
 import Wallet from '../pages/Wallet/Wallet'
 import NavigationBar  from '../components/NavigationBar/NavigationBar'
 import ElectionCommision from '../pages/Election/ElectionCommision';
+import TokenExchange from '../pages/TokenExchange/TokenExchange'
+import VoterProfile from '../pages/Voter/VoterProfile'
 const routes = createBrowserRouter([
     {
         path: '/',
@@ -30,6 +32,14 @@ const routes = createBrowserRouter([
     {
         path: '/voter-list',
         element:  ( <div><NavigationBar /> <VoterDisplay /></div>)
+    },
+    {
+        path: '/token-exchange',
+        element:  ( <div><NavigationBar /> <TokenExchange /></div>)
+    },
+    {
+        path: '/voter-profile',
+        element:  ( <div><NavigationBar /> <VoterProfile /></div>)
     },
 ])
 export default routes

@@ -7,7 +7,7 @@ router.post("/authentication", async (req, res, next) => {
   try {
     const { accountAddress } = req.query;
     const { signature } = req.body;
-    const electionCommision = "0x881520bdd2208db69ee47abc8a170eb1c7b2b0ab";
+    const electionCommision = "0x958bd4906017ACfC1538C24662983025239A160d";
     if (!accountAddress || !signature) {
       return res.status(500).json({ message: "Authentication Failed!" });
     }

@@ -7,13 +7,13 @@ router.post("/postVoterImage", multerConfig.uploadVoter, async (req, res) => {
   try {
     const { accountAddress } = req;
     const imageName = req.file.filename;
-    const savedvoter = await VoterModel.create({
+    await VoterModel.create({
       accountAddress,
       imageName,
     });
-    console.log(savedvoter);
-    res.status(201).json(savedvoter);
+    res.status(201).json({ message: "Image Upload Sucessfull!" });
   } catch (error) {
+    res.status(500).json({ message: "Image Upload Unsucessfull!" });
     console.error(error);
   }
 });

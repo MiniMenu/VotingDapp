@@ -1,7 +1,8 @@
 import { useRef, useState,useEffect} from 'react';
 import { useWeb3Context } from '../../context/useWeb3Context';
-import axios from 'axios';
+import { uploadFile } from '../../utils/voterImageUpload';
 import {useNavigate} from "react-router-dom";
+import toast from 'react-hot-toast';
 
 const VoterRegistration = () => {
   const {web3State} = useWeb3Context();
@@ -20,26 +21,24 @@ const VoterRegistration = () => {
     }
   },[navigateTo, token])
 
+
 const handleVoterRegistration = async(e) =>{
   e.preventDefault();
   try{
-  
-    const config = {
-        headers:{
-          'x-access-token':token
-        }
-    }
-    const formData =  new FormData();
-    formData.append("file",file);
+
     const name = nameRef.current.value;
     const gender = genderRef.current.value;
     const age = ageRef.current.value;
 
     if (name !== "" && gender!== "" && age !== ""){
-       await contractInstance.voterRegister(name, age, gender);
-       await axios.post(`http://localhost:3000/api/postVoterImage`, formData, config);
+       const tx = await contractInstance.voterRegister(name, age, gender);
+       const recipt = tx.wait();
+       if(recipt.status == 1) {
+          await uploadFile(file);
+          toast.success("Voter Registered Sucessfully!")
+       }    
     } else {
-      console.log("Empty fields detected");
+      toast.warn("Empty fields detected");
     }
 
     nameRef.current.value = "";
@@ -47,6 +46,15 @@ const handleVoterRegistration = async(e) =>{
     ageRef.current.value = "";
   } catch(error){
     //TODO: Handle errors
+    if (error.message.includes("You are not eligible")){
+      toast.error("You are not eligible!")
+    } else if (error.message.includes("You are from the election commission")){
+      toast.error("You are from the election commission!")
+    } else if (error.message.includes("Voter already registered")){
+      toast.error("Voter already registered!")
+    }else { 
+      toast.error("Error during Voter registration!")    
+    }
     console.error(error.message);
   }
 }

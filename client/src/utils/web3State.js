@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import abi from "../constants/ABI.json";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const getWeb3State = async () => {
   let [contractInstance, selectedAccount, chainId, electionCommisionStatus] = [
@@ -42,12 +43,20 @@ export const getWeb3State = async () => {
     electionCommisionStatus = res.data.electionCommisionStatus;
     localStorage.setItem("token", res.data.token);
     const contractAddress = "0x30266466Ddb581E19CC8f59F377fE3e67Fe57DeB";
-    contractInstance = new ethers.Contract(contractAddress, abi, signer);
+    contractInstance = new ethers.Contract(
+      contractAddress,
+      abi,
+      signer,
+      provider
+    );
+    toast.success("Signed In Successfully!");
     return {
       contractInstance,
       chainId,
       selectedAccount,
       electionCommisionStatus,
+      provider,
+      signer,
     };
   } catch (error) {
     console.error("Not able to get the web3 state", error.message);

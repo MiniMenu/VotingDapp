@@ -5,53 +5,45 @@ const NavigationBar = () => {
   const {electionCommisionStatus, selectedAccount} = web3State
 
   return (
+    selectedAccount ? (
       <header>
-            <nav>
-              <ul>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/candidate-register">Candidate Register</Link>
+            </li>
+            <li>
+              <Link to="/candidate-list">Candidate List</Link>
+            </li>
+            <li>
+              <Link to="/voter-register">Voter Register</Link>
+            </li>
+            {electionCommisionStatus && (
+              <>
                 <li>
-                  <Link to="/">Home</Link>
-                </li>
-                { selectedAccount ? (
-                     <li>
-                      <Link to="/candidate-register">Candidate Register</Link>
-                    </li>
-                    ):(<div></div>)
-                }
-                { selectedAccount ? (
-                     <li>
-                      <Link to="/candidate-list">Candidate List</Link>
-                    </li>
-                    ):(<div></div>)
-                }
-                { selectedAccount ? (
-                     <li>
-                      <Link to="/voter-register">Voter Register</Link>
-                    </li>
-                    ):(<div></div>)
-                }
-                 { selectedAccount ? (
-                     <li>
-                       <Link to="/voter-list">Voter List</Link>
-                    </li>
-                    ):(<div></div>)
-                }
-                 { selectedAccount ? (
-                     <li>
-                        <Link to="/election-commision">Election Commision</Link>
-                    </li>
-                    ):(<div></div>)
-                }
-
-                {/* {electionCommisionStatus ? (<li>
                   <Link to="/voter-list">Voter List</Link>
-                </li>):(<div></div>)} */}
-                {/* {electionCommisionStatus ? (<li>
-                <Link to="/election-commision">Election Commision</Link>
-                </li>):(<div></div>)} */}
-              </ul>
-            </nav>
-          </header>
-  )
+                </li>
+                <li>
+                  <Link to="/election-commision">Election Commision</Link>
+                </li>
+              </>
+            )}
+            <li>
+              <Link to="/token-exchange">Token Exchange</Link>
+            </li>
+            <li>
+              <Link to={`/voter-profile`}>Voter Profile</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    ) : (
+      <div></div>
+    )
+  );
 }
 
 export default NavigationBar

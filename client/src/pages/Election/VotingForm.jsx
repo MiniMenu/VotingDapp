@@ -1,6 +1,6 @@
 import { useWeb3Context } from '../../context/useWeb3Context';
 import { useRef } from 'react';
-
+import toast from 'react-hot-toast';
 const VotingForm = () => {
     const {web3State} = useWeb3Context();
     const {contractInstance} = web3State;
@@ -14,13 +14,22 @@ const VotingForm = () => {
     }
     const startVoting = async(e) =>{
       e.preventDefault();
-      const startTime = startRef.current.value;
-      const endTime = endRef.current.value;
-      const startTimeInSeconds = timeInSeconds(startTime);
-      const endTimeInSeconds = timeInSeconds(endTime);
-      await contractInstance.voteTime(startTimeInSeconds, endTimeInSeconds);
+        const startTime = startRef.current.value;
+        const endTime = endRef.current.value;
+        const startTimeInSeconds = timeInSeconds(startTime);
+        const endTimeInSeconds = timeInSeconds(endTime);
+      try {       
+        const tx = await contractInstance.voteTime(startTimeInSeconds, endTimeInSeconds);
+        const res = tx.wait();  
+        if (res.status == 1){
+          toast.success("Voting Started Sucessfully!");
+        } 
+      } catch(err){
+        toast.error("Error during voting start!");
+        console.error(err.message);
+      }
+      
     }
-
    
   return (
 

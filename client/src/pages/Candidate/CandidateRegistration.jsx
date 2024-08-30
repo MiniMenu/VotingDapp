@@ -1,7 +1,8 @@
 import {  useEffect, useRef, useState} from 'react';
 import { useWeb3Context } from '../../context/useWeb3Context';
-import axios from 'axios';
+import { uploadFile } from '../../utils/candidateImageUpload';
 import {useNavigate} from "react-router-dom";
+import toast from 'react-hot-toast';
 
 const CandidateRegistration = () => {
     const {web3State} = useWeb3Context();
@@ -14,38 +15,31 @@ const CandidateRegistration = () => {
     const token = localStorage.getItem("token");
     const navigateTo = useNavigate();
 
-
     useEffect(()=>{
       if(!token){
         navigateTo("/");
       }
     },[navigateTo, token])
 
+
   const handleCandidateRegistration = async(e) =>{
     e.preventDefault();
     try{
-    
-      const token = localStorage.getItem("token");
-      const config = {
-        headers:{
-          'x-access-token':token
-        }
-      }
-      const formData =  new FormData();
-      formData.append("file",file);
-
       const name = nameRef.current.value;
       const gender = genderRef.current.value;
       const age = ageRef.current.value;
       const party = partyRef.current.value;
 
-
       if (name !== "" && gender!== "" && age !== "" && party !== ""){
-        console.log(name, gender, age, party);
-         await contractInstance.candidateRegister(name, party, age, gender);
-         await axios.post(`http://localhost:3000/api/postCandidateImage`, formData, config);
+         const tx = await contractInstance.candidateRegister(name, party, age, gender);
+         const res = tx.wait();
+         if (res.status == 1) {
+          await uploadFile(file);
+          toast.success("Candidate Registered Successfully!")
+         }
+  
       } else {
-        console.log("Empty fields detected");
+        toast.warn("Empty fields detected");
       }
 
       nameRef.current.value = "";
@@ -55,6 +49,17 @@ const CandidateRegistration = () => {
       
     } catch(error){
       //TODO: Handle errors
+      if (error.message.includes("You are not eligible")){
+        toast.error("You are not eligible!")
+      } else if (error.message.includes("You are from the election commission")){
+        toast.error("You are from the election commission!")
+      } else if (error.message.includes("Candidate already registered")){
+        toast.error("Candidate already registered!")
+      } else if (error.message.includes("Candidate registration full")){
+        toast.error("Candidate registration full!")
+      }else { 
+        toast.error("Error during Candidate registration!")    
+      }
       console.error(error.message);
     }
   }

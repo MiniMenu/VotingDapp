@@ -155,7 +155,6 @@ input[type="file"]::file-selector-button:hover {
   margin: 25px;
   width: 350px;
   height: 200px;
-  outline: dashed 1px black;
   /* Setup */
   position: relative;
 }
@@ -227,4 +226,20 @@ input[type="file"]::file-selector-button:hover {
     width: 100%;
     height: auto;
   }
+}
+
+.float-parent-element { 
+  width: 100%; 
+} 
+.float-child-element { 
+  float: left; 
+  width: 50%; 
+} 
+.div1 { 
+  margin-left: 10%; 
+  height: 100px; 
+} 
+.div2 { 
+  margin-left: 10%; 
+  height: 100px; 
 }
