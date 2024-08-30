@@ -1,5 +1,7 @@
 # Full-Stack Blockchain Bootcamp Final Project - Voting Application
 
+Tech: Solidity, React, Express, Etherjs, Mongodb
+
 Features
 
   Voter:
